@@ -1,0 +1,28 @@
+(function () {
+    angular
+        .module('app')
+        .config($RESOURCE_UPPERConfig);
+
+    /* @ngInject */
+    function $RESOURCE_UPPERConfig($stateProvider) {
+        $stateProvider
+            .state('$RESOURCE_LOWER', {
+                url: "/$RESOURCE_LOWER",
+                views: {
+                    '': {
+                        controller: '$RESOURCE_UPPERIndexCtrl',
+                        controllerAs: 'vm',
+                        resolve: { /* @ngInject */
+                            $RESOURCE_LOWERIndex: ['$RESOURCE_UPPERService', function($RESOURCE_UPPERService){
+                                return $RESOURCE_UPPERService.index();
+                            }]
+                        },
+                        templateUrl: "/assets/js/$RESOURCE_LOWER/templates/index.html"
+                    }
+                },
+                data: { pageTitle: '$RESOURCE_UPPER' }
+            });
+    }
+
+
+})();
